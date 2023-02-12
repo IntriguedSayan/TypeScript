@@ -1,8 +1,23 @@
 import React from 'react'
 
-const TodoInput = () => {
+type TodoInputProps={
+
+    handleChange:()=>void;
+    value:string;
+
+}
+
+const TodoInput = (props:TodoInputProps) => {
+
+    const{handleChange,value}=props;
+
   return (
-    <div>TodoInput</div>
+
+    <>
+        <input type="text" value={value}  onChange={handleChange}
+        placeholder="Write your Todos" />
+    </>
+    
   )
 }
 

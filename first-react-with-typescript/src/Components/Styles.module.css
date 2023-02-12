@@ -1,0 +1,9 @@
+.todoitem{
+
+    width: 20rem;
+    height: 5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
