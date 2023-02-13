@@ -13,16 +13,13 @@ type TodoListProps={
   
 }
 
-interface Payload{
-    title:string;
-    status:false;
-}
+
 
 const Todo = () => {
 
     const [todos,setTodos] = useState<TodoListProps[]>([]);
     const [text,setText]=useState<string>("");
-    const [payload,setPayload]=useState<Payload>({title:"",status:false});
+    
     
     const handleChange =(event:object):void=>{
 
@@ -30,12 +27,25 @@ const Todo = () => {
         
 
     }
+    console.log(text);
+    const getTodos=():void=>{
+
+        axios.get(`http://localhost:8080/todos`)
+        .then((res)=>setTodos(res.data))
+        .catch((err)=>console.log(err))
+
+    }
 
     const handleClick=()=>{
         
-        setPayload({...payload,title:text})
+       
+        const newPayload={
+            title:text,
+            status:false,
+        }
 
-        axios.post(`http://localhost:8080/todos`,payload)
+        console.log(newPayload);
+        axios.post(`http://localhost:8080/todos`,newPayload)
         .then((res)=>{
             console.log(res);
             getTodos();
@@ -45,24 +55,14 @@ const Todo = () => {
         .catch((err)=>console.log(err));
 
     }
-    const getTodos=():void=>{
 
-        axios.get(`http://localhost:8080/todos`)
-        .then((res)=>setTodos(res.data))
-        .catch((err)=>console.log(err))
-
-    }
-
-    useEffect(()=>{
-        getTodos();
-    },[])
 
   return (
     <>
       <Header label='TODO APP'/>
-      <TodoInput handleChange={handleChange} value={text} />  
+      <TodoInput changeHandler={handleChange} value={text} />  
       <Button handleClick={handleClick}>{"Submit"}</Button>
-      <TodoList />
+      <TodoList data={todos} />
 
     </>
   )

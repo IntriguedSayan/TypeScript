@@ -1,20 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 type TodoInputProps={
 
-    handleChange:()=>void;
+    changeHandler:(e:object)=>void;
     value:string;
 
 }
 
 const TodoInput = (props:TodoInputProps) => {
 
-    const{handleChange,value}=props;
+    const{changeHandler,value}=props;
+    // const[text,setText]=useState<string>("");
+
+    // const handleChange=(e:object)=>{
+
+    //   setText(e.target.value);
+
+    // }
+
+    console.log(value);
+
 
   return (
 
     <>
-        <input type="text" value={value}  onChange={handleChange}
+        <input type="text" value={value}  onChange={(e:object)=>changeHandler(e)}
         placeholder="Write your Todos" />
     </>
     

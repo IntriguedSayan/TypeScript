@@ -10,12 +10,15 @@ type TodoItem={
     
 }
 
+interface TodoListProps{
+    data:TodoItem[];
+}
 
-const TodoList = () => {
+const TodoList = ({data}:TodoListProps) => {
 
    
   
-    const [todos,setTodos]=useState([]);  
+    const [todos,setTodos]=useState<TodoItem[]>([]||data);  
 
     const handleClick=(id:number|string)=>{
 
@@ -35,8 +38,12 @@ const TodoList = () => {
     }
 
     useEffect(()=>{
-        getTodos();
-    },[])
+
+       
+            getTodos();
+        
+      
+    },[data])
 
   return (
     <div>
