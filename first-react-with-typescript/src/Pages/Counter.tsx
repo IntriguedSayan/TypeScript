@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Header from '../Components/Header'
 import Button from '../Components/Button'
+import Layout from '../Components/Layout';
+import Navbar from '../Components/Navbar';
 
 const Counter = () => {
 
@@ -14,13 +16,14 @@ const Counter = () => {
 
   return (
     <>
-
+      <Layout>
+        <Navbar/>
         <Header label='Counter'/>
         <Header label={`${state}`}/>
 
         <Button handleClick={()=>handleClick(1)} >{"Increase"}</Button>
         <Button handleClick={()=>handleClick(-1)}>{"Decrease"}</Button> 
-
+      </Layout>
     </>
   )
 }

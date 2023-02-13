@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import TodoInput from '../Components/TodoInput'
 import TodoList from '../Components/TodoList';
 import Button from '../Components/Button';
 import axios from "axios";
 import Header from '../Components/Header';
+import Layout from '../Components/Layout';
+import Navbar from '../Components/Navbar';
 
 type TodoListProps={
 
@@ -59,11 +61,13 @@ const Todo = () => {
 
   return (
     <>
-      <Header label='TODO APP'/>
-      <TodoInput changeHandler={handleChange} value={text} />  
-      <Button handleClick={handleClick}>{"Submit"}</Button>
-      <TodoList data={todos} />
-
+    <Layout>
+        <Navbar/>
+        <Header label='TODO APP'/>
+        <TodoInput changeHandler={handleChange} value={text} />  
+        <Button handleClick={handleClick}>{"Submit"}</Button>
+        <TodoList data={todos} />
+    </Layout>
     </>
   )
 }

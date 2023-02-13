@@ -2,6 +2,7 @@
 
 interface ButtonProps{
 
+  className?:string;
   children:string;
   handleClick:()=>void;
 
@@ -10,11 +11,11 @@ interface ButtonProps{
 
 const Button = (props:ButtonProps) => {
 
-  const { children, handleClick } = props;
+  const { children, handleClick,className } = props;
 
 
   return (
-    <button onClick={handleClick}>{children}</button>
+    <button className={className} onClick={handleClick}>{children}</button>
   )
 }
 
