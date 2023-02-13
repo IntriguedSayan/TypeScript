@@ -1,6 +1,8 @@
 .todoitem{
 
-    width: 20rem;
+    border: 1px solid cyan;
+    border-radius: 0.5rem;
+    width: 50rem;
     height: 5rem;
     display: flex;
     justify-content: space-around;

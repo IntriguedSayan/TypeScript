@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import TodoItem from './TodoItem';
 import axios from 'axios';
 
@@ -20,20 +20,30 @@ const TodoList = ({data}:TodoListProps) => {
   
     const [todos,setTodos]=useState<TodoItem[]>([]||data);  
 
-    const handleClick=(id:number|string)=>{
+    const handleClick=(id:number|string):void=>{
 
-    axios.patch(`http://localhost:8080/todos/${id}`,{status:true})
-        .then((res)=>{
-            getTodos();
-            console.log(res)})
-        .catch((err)=>console.log(err));
+        axios.patch(`http://localhost:8080/todos/${id}`,{status:true})
+            .then((res)=>{
+                getTodos();
+                console.log(res)
+            })
+            .catch((err)=>console.log(err));
 
+    }
+    const handleDelete=(id:number|string):void=>{
+        
+        axios.delete(`http://localhost:8080/todos/${id}`)
+             .then((res)=>{
+                getTodos();
+                console.log(res);
+             })
+             .catch((err)=>console.log(err));
     }
     const getTodos=():void=>{
 
-    axios.get(`http://localhost:8080/todos`)
-    .then((res)=>setTodos(res.data))
-    .catch((err)=>console.log(err))
+        axios.get(`http://localhost:8080/todos`)
+             .then((res)=>setTodos(res.data))
+             .catch((err)=>console.log(err))
 
     }
 
@@ -54,6 +64,7 @@ const TodoList = ({data}:TodoListProps) => {
                 <TodoItem key={elem.id} id={elem.id} 
                 title={elem.title} status={elem.status}
                 handleClick={()=>handleClick(elem.id)}
+                deleteHandler={()=>handleDelete(elem.id)}
                 />
 
             )):"NO TODOS"
